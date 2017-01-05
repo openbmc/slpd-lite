@@ -3,7 +3,7 @@
 namespace slp
 {
 /** @brief SLP configuartion file which is having the service information */
-constexpr auto CONF_FILE = "/etc/slp_lite.conf";
+constexpr auto SERVICE_DIR = "/etc/slp/services/";
 /** @brief SLP Version */
 constexpr size_t VERSION_2 = 2;
 constexpr auto SUCCESS = 0;
