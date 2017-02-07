@@ -30,19 +30,12 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
     {
         case slp::VERSION_2:
         {
-            std::cout << "SLP Request" << "\n";
-            //print the buffer
-            std::for_each(recvBuff.begin(), recvBuff.end(),
-                          [](uint8_t & ch)
-            {
-                std::cout << std::hex << std::setfill('0')
-                          << std::setw(2) << (int)ch << ' ' ;
-            });
-            std::cout << "\n";
+            std::cout << "SLP Version2 Request" << "\n";
             //Parse the buffer and construct the req object
             std::tie(rc, req) = slp::parser::parseBuffer(recvBuff);
             if (!rc)
             {
+                std::cout << "SLP Request Parsed\n";
                 //Passing the req object to handler to serve it
                 std::tie(rc, resp) = slp::handler::processRequest(req);
             }
@@ -60,15 +53,6 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
         std::cerr << "E> SLP Error rc=" << rc << "\n";
         resp = slp::handler::processError(req, rc);
     }
-
-    //print and send the response
-    std::cout << "SLP Response" << "\n";
-    std::for_each(resp.begin(), resp.end(),
-                  [](uint8_t & ch)
-    {
-        std::cout << std::hex << std::setfill('0')
-                  << std::setw(2) << (int)ch << ' ' ;
-    });
 
     channel.write(resp);
     return slp::SUCCESS;
