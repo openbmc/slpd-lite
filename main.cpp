@@ -30,15 +30,6 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
     {
         case slp::VERSION_2:
         {
-            std::cout << "SLP Request" << "\n";
-            //print the buffer
-            std::for_each(recvBuff.begin(), recvBuff.end(),
-                          [](uint8_t & ch)
-            {
-                std::cout << std::hex << std::setfill('0')
-                          << std::setw(2) << (int)ch << ' ' ;
-            });
-            std::cout << "\n";
             //Parse the buffer and construct the req object
             std::tie(rc, req) = slp::parser::parseBuffer(recvBuff);
             if (!rc)
@@ -49,6 +40,9 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
             break;
         }
         default:
+            std::cout << "I> SLP Unsupported Request Version="
+                      << (int)recvBuff[0] <<"\n";
+
             rc = static_cast<uint8_t>(slp::Error::VER_NOT_SUPPORTED);
             break;
     }
@@ -60,15 +54,6 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
         std::cerr << "E> SLP Error rc=" << rc << "\n";
         resp = slp::handler::processError(req, rc);
     }
-
-    //print and send the response
-    std::cout << "SLP Response" << "\n";
-    std::for_each(resp.begin(), resp.end(),
-                  [](uint8_t & ch)
-    {
-        std::cout << std::hex << std::setfill('0')
-                  << std::setw(2) << (int)ch << ' ' ;
-    });
 
     channel.write(resp);
     return slp::SUCCESS;
