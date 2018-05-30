@@ -1,0 +1,9 @@
+Code-Review+1: Brad Bishop <bradleyb@fuzziesquirrel.com>
+Code-Review+2: Ratan Gupta <ratagupt@linux.vnet.ibm.com>
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Submitted-by: Ratan Gupta <ratagupt@linux.vnet.ibm.com>
+Submitted-at: Wed, 30 May 2018 02:38:38 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/10712
+Project: openbmc/slpd-lite
+Branch: refs/heads/master
