@@ -7,8 +7,8 @@
 #include <iomanip>
 
 /* Call Back for the sd event loop */
-static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
-                          void* userdata)
+static int requestHandler(sd_event_source* /*es*/, int fd, uint32_t /*revents*/,
+                          void* /*userdata*/)
 {
     int rc = slp::SUCCESS;
     timeval tv{slp::TIMEOUT, 0};
@@ -27,8 +27,7 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
 
     switch (recvBuff[0])
     {
-        case slp::VERSION_2:
-        {
+        case slp::VERSION_2: {
             // Parse the buffer and construct the req object
             std::tie(rc, req) = slp::parser::parseBuffer(recvBuff);
             if (!rc)
@@ -57,7 +56,7 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
     return slp::SUCCESS;
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     slp::udp::Server svr(slp::PORT, requestHandler);
     return svr.run();
