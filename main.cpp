@@ -7,8 +7,8 @@
 #include <iomanip>
 
 /* Call Back for the sd event loop */
-static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
-                          void* userdata)
+static int requestHandler(sd_event_source* /*es*/, int fd, uint32_t /*revents*/,
+                          void* /*userdata*/)
 {
     int rc = slp::SUCCESS;
     timeval tv{slp::TIMEOUT, 0};
@@ -57,7 +57,7 @@ static int requestHandler(sd_event_source* es, int fd, uint32_t revents,
     return slp::SUCCESS;
 }
 
-int main(int argc, char* argv[])
+int main(int /*argc*/,char** /*argv*/)
 {
     slp::udp::Server svr(slp::PORT, requestHandler);
     return svr.run();
