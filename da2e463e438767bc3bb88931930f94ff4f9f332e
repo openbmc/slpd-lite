@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f602cb0b_c944ff22",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-02-18T08:52:13Z",
+      "side": 1,
+      "message": "What are these directives for?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ace6c908_3f18cac5",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-02-18T08:52:13Z",
+      "side": 1,
+      "message": "Checking the dependency on systemd ensure that the header file is present?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "929877b2_32277bcb",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-02-18T08:52:13Z",
+      "side": 1,
+      "message": "can we keep the alignment consistent?",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    }
+  ]
+}
