@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "7f4103a6_b416c19b",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "please do alignment.",
+      "range": {
+        "startLine": 6,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36c5f7ee_4994cac6",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "any specific reason to add these flags?",
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7658287a_bbb16000",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "Why this line required ? because you already checking systemd as dependency (LN: 18) \nand FYI, when you using \u0027dependency\u0027 meson api , it will automatically will take care for linking. so, no special action required.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b663e300_9bf3501f",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "looks (https://github.com/openbmc/slpd-lite/blob/master/configure.ac#L25) this argument is build time configuration option. so, you need use meson_options.txt approach.",
+      "range": {
+        "startLine": 13,
+        "startChar": 22,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f602cb0b_c944ff22",
         "filename": "meson.build",
         "patchSetId": 6
@@ -25,6 +111,47 @@
     },
     {
       "key": {
+        "uuid": "7dcf585d_a478012b",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "If am not wrong currect build directory, because in auto tools (https://github.com/openbmc/slpd-lite/blob/master/configure.ac#L4) added in current build directory and even if am not wrong some where in the code they will may use \"#include \"config.h\" , so current is fine.\nIf changing directory than code (where they are used) also need update.",
+      "parentUuid": "f602cb0b_c944ff22",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23efe8f0_2bf5de34",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "This line not required, because your project api (LN 1) saying its c++ project. so, meson automatically take care to check cpp compiler in the environment. \nor You faced any issue and added this ?",
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ace6c908_3f18cac5",
         "filename": "meson.build",
         "patchSetId": 6
@@ -36,6 +163,30 @@
       "writtenOn": "2020-02-18T08:52:13Z",
       "side": 1,
       "message": "Checking the dependency on systemd ensure that the header file is present?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3ff8f09_c9bdd54c",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000427
+      },
+      "writtenOn": "2020-05-06T07:08:35Z",
+      "side": 1,
+      "message": "+1 and Right, no special action required, dependency api will take care.",
+      "parentUuid": "ace6c908_3f18cac5",
       "range": {
         "startLine": 21,
         "startChar": 0,
