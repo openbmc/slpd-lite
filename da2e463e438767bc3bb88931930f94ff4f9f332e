@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "095bca5e_c22d2e1a",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "Make does not seem to care about the errors caused by missing-field-initializers, but meson seems to care about it.\n\nSolving those might require a deeper understanding of the code, and fixing them might be out of the scope of this conversion. So adding this compiler flag to suppress them for now and will fix them in later commits.",
+      "parentUuid": "36c5f7ee_4994cac6",
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7658287a_bbb16000",
         "filename": "meson.build",
         "patchSetId": 6
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "65d7b5c4_b10df983",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "done, taken care by adding libsystemd dependecy.",
+      "parentUuid": "7658287a_bbb16000",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b663e300_9bf3501f",
         "filename": "meson.build",
         "patchSetId": 6
@@ -76,6 +118,30 @@
       "writtenOn": "2020-05-06T07:08:35Z",
       "side": 1,
       "message": "looks (https://github.com/openbmc/slpd-lite/blob/master/configure.ac#L25) this argument is build time configuration option. so, you need use meson_options.txt approach.",
+      "range": {
+        "startLine": 13,
+        "startChar": 22,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f11e2e8e_56a135ef",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "Nope, this was a relic approach followed, but the main intention is not to expose these things to outside, and i still feel it should be hardocded rather than configurable.",
+      "parentUuid": "b663e300_9bf3501f",
       "range": {
         "startLine": 13,
         "startChar": 22,
@@ -152,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "344f6921_131b9c5d",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "nope, systemd \u0026 libsystemd are two different dependencies.\n\nThis is taken care by adding libsystemd dependency.",
+      "parentUuid": "23efe8f0_2bf5de34",
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ace6c908_3f18cac5",
         "filename": "meson.build",
         "patchSetId": 6
@@ -199,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "0c9a4f73_68001422",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3ff8f09_c9bdd54c",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "929877b2_32277bcb",
         "filename": "meson.build",
         "patchSetId": 6
@@ -219,6 +327,30 @@
       "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fd3932e_8699c547",
+        "filename": "meson.build",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000206
+      },
+      "writtenOn": "2020-12-12T07:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "929877b2_32277bcb",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "da2e463e438767bc3bb88931930f94ff4f9f332e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4",
+      "unresolved": false
     }
   ]
 }
