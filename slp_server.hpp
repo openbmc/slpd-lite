@@ -23,7 +23,6 @@ namespace udp
  */
 class Server
 {
-
   public:
     Server() : Server(slp::PORT, nullptr){};
 

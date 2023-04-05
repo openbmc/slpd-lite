@@ -63,7 +63,6 @@ buffer prepareHeader(const Message& req)
 
 std::tuple<int, buffer> processSrvTypeRequest(const Message& req)
 {
-
     /*
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -92,17 +91,17 @@ std::tuple<int, buffer> processSrvTypeRequest(const Message& req)
     bool firstIteration = true;
     for_each(svcList.cbegin(), svcList.cend(),
              [&service, &firstIteration](const auto& svc) {
-                 if (firstIteration == true)
-                 {
-                     service = svc.first;
-                     firstIteration = false;
-                 }
-                 else
-                 {
-                     service += ",";
-                     service += svc.first;
-                 }
-             });
+        if (firstIteration == true)
+        {
+            service = svc.first;
+            firstIteration = false;
+        }
+        else
+        {
+            service += ",";
+            service += svc.first;
+        }
+    });
 
     buff = prepareHeader(req);
 
@@ -138,7 +137,6 @@ std::tuple<int, buffer> processSrvTypeRequest(const Message& req)
 
 std::tuple<int, buffer> processSrvRequest(const Message& req)
 {
-
     /*
           Service Reply
           0                   1                   2                   3
@@ -213,8 +211,8 @@ std::tuple<int, buffer> processSrvRequest(const Message& req)
     auto pos = slp::response::OFFSET_URL_ENTRY + slp::response::SIZE_URL_COUNT;
     for (const auto& addr : ifaddrList)
     {
-        std::string url =
-            svc.name + ':' + svc.type + "//" + addr + ',' + svc.port;
+        std::string url = svc.name + ':' + svc.type + "//" + addr + ',' +
+                          svc.port;
 
         buff.resize(buff.size() + slp::response::SIZE_URL_ENTRY + url.length());
 
@@ -345,8 +343,8 @@ std::tuple<int, buffer> processRequest(const Message& msg)
     switch (msg.header.functionID)
     {
         case (uint8_t)slp::FunctionType::SRVTYPERQST:
-            std::tie(rc, resp) =
-                slp::handler::internal::processSrvTypeRequest(msg);
+            std::tie(rc,
+                     resp) = slp::handler::internal::processSrvTypeRequest(msg);
             break;
         case (uint8_t)slp::FunctionType::SRVRQST:
             std::tie(rc, resp) = slp::handler::internal::processSrvRequest(msg);

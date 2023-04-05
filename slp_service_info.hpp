@@ -27,8 +27,8 @@ struct ConfigData
         delimtrPos = line.find(DELIMITER, delimtrPrevPos);
         while (delimtrPos != std::string::npos)
         {
-            tokens[count] =
-                line.substr(delimtrPrevPos, (delimtrPos - delimtrPrevPos));
+            tokens[count] = line.substr(delimtrPrevPos,
+                                        (delimtrPos - delimtrPrevPos));
             delimtrPrevPos = delimtrPos + 1;
 
             delimtrPos = line.find(DELIMITER, delimtrPrevPos);
