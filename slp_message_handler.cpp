@@ -1,5 +1,3 @@
-#include "config.h"
-
 #include "endian.hpp"
 #include "slp.hpp"
 #include "slp_meta.hpp"
@@ -19,6 +17,8 @@ namespace handler
 
 namespace internal
 {
+
+static constexpr auto SERVICE_DIR = "/etc/slp/services/";
 
 buffer prepareHeader(const Message& req)
 {

@@ -22,8 +22,5 @@ PKG_CHECK_MODULES([SYSTEMD], [libsystemd >= 221])
 AC_CHECK_HEADER(systemd/sd-bus.h, ,[AC_MSG_ERROR([Could not find systemd/sd-bus.h...systemd development package required])])
 # Checks for typedefs, structures, and compiler characteristics.
 
-AC_ARG_VAR(SERVICE_DIR, [Location of service files.])
-AS_IF([test "x$SERVICE_DIR" == "x"], [SERVICE_DIR="/etc/slp/services/"])
-AC_DEFINE_UNQUOTED([SERVICE_DIR], ["$SERVICE_DIR"], [Location of service files.])
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
