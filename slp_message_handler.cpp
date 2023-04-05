@@ -360,8 +360,9 @@ buffer processError(const Message& req, uint8_t err)
     buffer buff;
     buff = slp::handler::internal::prepareHeader(req);
 
-    std::copy_n(&err, slp::response::SIZE_ERROR,
-                buff.data() + slp::response::OFFSET_ERROR);
+    static_assert(sizeof(err) == 1, "Errors should be 1 byte.");
+    buff[slp::response::OFFSET_ERROR + 1] = err;
+
     return buff;
 }
 } // namespace handler
