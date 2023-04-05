@@ -53,7 +53,6 @@ constexpr size_t SIZE_LIFETIME = 2;
 constexpr size_t SIZE_URLLENGTH = 2;
 constexpr size_t SIZE_AUTH = 1;
 
-constexpr size_t OFFSET_ERROR = 16;
 constexpr size_t OFFSET_SERVICE_LEN = 18;
 constexpr size_t OFFSET_SERVICE = 20;
 constexpr size_t OFFSET_URL_ENTRY = 18;
