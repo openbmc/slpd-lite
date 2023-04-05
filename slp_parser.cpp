@@ -30,7 +30,7 @@ std::tuple<int, Message> parseHeader(const buffer& buff)
        |      Language Tag Length      |         Language Tag          \
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ */
 
-    Message req{0};
+    Message req{};
     int rc = slp::SUCCESS;
 
     std::copy_n(buff.data(), slp::header::SIZE_VERSION, &req.header.version);
