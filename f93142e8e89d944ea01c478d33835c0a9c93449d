@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037bf897_50025cb2",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2023-04-06T11:22:37Z",
+      "side": 0,
+      "message": "Gerrit is not allowing me to comment on the right hand side window, so commneting on the left side window.\n\nbuff[slp::response::OFFSET_ERROR + 1] \u003d err;\n\nThis is not correct, Error code should go after the service location header, so we should do as below\n\nbuff[ slp::header::MIN_LEN + req.header.langtag.length()] \u003d err;",
+      "revId": "f93142e8e89d944ea01c478d33835c0a9c93449d",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
