@@ -23,3 +23,19 @@ executable(
   install: true,
   install_dir: get_option('sbindir'),
 )
+
+build_tests = get_option('tests')
+gtest = dependency('gtest', main: true, disabler: true, required: build_tests)
+gmock = dependency('gmock', disabler: true, required: build_tests)
+  test(
+      'test_slp_parser',
+      executable('test_slp_parser',
+          './test/slp_parser_test.cpp',
+          'slp_parser.cpp',
+          dependencies: [
+              gtest,
+          ],
+          implicit_include_directories: true,
+          include_directories: '../'
+      )
+  )
