@@ -33,42 +33,54 @@ std::tuple<int, Message> parseHeader(const buffer& buff)
     Message req{};
     int rc = slp::SUCCESS;
 
-    std::copy_n(buff.data(), slp::header::SIZE_VERSION, &req.header.version);
-
-    std::copy_n(buff.data() + slp::header::OFFSET_FUNCTION,
-                slp::header::SIZE_VERSION, &req.header.functionID);
-
-    std::copy_n(buff.data() + slp::header::OFFSET_LENGTH,
-                slp::header::SIZE_LENGTH, req.header.length.data());
-
-    std::copy_n(buff.data() + slp::header::OFFSET_FLAGS,
-                slp::header::SIZE_FLAGS, (uint8_t*)&req.header.flags);
-
-    req.header.flags = endian::from_network(req.header.flags);
-    std::copy_n(buff.data() + slp::header::OFFSET_EXT, slp::header::SIZE_EXT,
-                req.header.extOffset.data());
-
-    std::copy_n(buff.data() + slp::header::OFFSET_XID, slp::header::SIZE_XID,
-                (uint8_t*)&req.header.xid);
-
-    req.header.xid = endian::from_network(req.header.xid);
-
-    uint16_t langtagLen;
-
-    std::copy_n(buff.data() + slp::header::OFFSET_LANG_LEN,
-                slp::header::SIZE_LANG, (uint8_t*)&langtagLen);
-
-    langtagLen = endian::from_network(langtagLen);
-
-    req.header.langtag.insert(
-        0, (const char*)buff.data() + slp::header::OFFSET_LANG, langtagLen);
-
-    /* check for the validity of the function */
-    if (req.header.functionID <
-            static_cast<uint8_t>(slp::FunctionType::SRVRQST) ||
-        req.header.functionID > static_cast<uint8_t>(slp::FunctionType::SAADV))
+    if (buff.size() < slp::header::MIN_LEN)
     {
+        std::cerr << "Invalid msg size: " << buff.size() << std::endl;
         rc = static_cast<int>(slp::Error::PARSE_ERROR);
+    }
+    else
+    {
+        std::copy_n(buff.data(), slp::header::SIZE_VERSION,
+                    &req.header.version);
+
+        std::copy_n(buff.data() + slp::header::OFFSET_FUNCTION,
+                    slp::header::SIZE_VERSION, &req.header.functionID);
+
+        std::copy_n(buff.data() + slp::header::OFFSET_LENGTH,
+                    slp::header::SIZE_LENGTH, req.header.length.data());
+
+        std::copy_n(buff.data() + slp::header::OFFSET_FLAGS,
+                    slp::header::SIZE_FLAGS, (uint8_t*)&req.header.flags);
+
+        req.header.flags = endian::from_network(req.header.flags);
+        std::copy_n(buff.data() + slp::header::OFFSET_EXT,
+                    slp::header::SIZE_EXT, req.header.extOffset.data());
+
+        std::copy_n(buff.data() + slp::header::OFFSET_XID,
+                    slp::header::SIZE_XID, (uint8_t*)&req.header.xid);
+
+        req.header.xid = endian::from_network(req.header.xid);
+
+        uint16_t langtagLen;
+
+        std::copy_n(buff.data() + slp::header::OFFSET_LANG_LEN,
+                    slp::header::SIZE_LANG, (uint8_t*)&langtagLen);
+
+        langtagLen = endian::from_network(langtagLen);
+
+        req.header.langtag.insert(
+            0, (const char*)buff.data() + slp::header::OFFSET_LANG, langtagLen);
+
+        /* check for the validity of the function */
+        if (req.header.functionID <
+                static_cast<uint8_t>(slp::FunctionType::SRVRQST) ||
+            req.header.functionID >
+                static_cast<uint8_t>(slp::FunctionType::SAADV))
+        {
+            std::cerr << "Invalid function ID: " << req.header.functionID
+                      << std::endl;
+            rc = static_cast<int>(slp::Error::PARSE_ERROR);
+        }
     }
 
     return std::make_tuple(rc, std::move(req));
