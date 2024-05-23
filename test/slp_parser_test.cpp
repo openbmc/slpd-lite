@@ -45,3 +45,35 @@ TEST(parseHeaderTest, InvalidBufferSize)
 
     EXPECT_NE(rc, 0);
 }
+
+TEST(parseHeaderTest, ValidLangTagLength)
+{
+    // Language Tag Length that is valid
+    slp::buffer testData{0x00,0x01,0x00,0x00,
+                         0x00,0x00,0x00,0x00,
+                         0x00,0x00,0x00,0x00,
+                         0x00,0x04,0x00,0x00,
+                         0x00,0x00};
+
+    slp::Message req;
+    int rc = slp::SUCCESS;
+    std::tie(rc, req) = slp::parser::internal::parseHeader(testData);
+
+    EXPECT_EQ(rc, 0);
+}
+
+TEST(parseHeaderTest, InvalidLangTagLength)
+{
+    // Language Tag Length that is too big
+    slp::buffer testData{0x00,0x01,0x00,0x00,
+                         0x00,0x00,0x00,0x00,
+                         0x00,0x00,0x00,0x00,
+                         0x00,0x05,0x00,0x00,
+                         0x00,0x00};
+
+    slp::Message req;
+    int rc = slp::SUCCESS;
+    std::tie(rc, req) = slp::parser::internal::parseHeader(testData);
+
+    EXPECT_NE(rc, 0);
+}

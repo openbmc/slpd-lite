@@ -68,16 +68,25 @@ std::tuple<int, Message> parseHeader(const buffer& buff)
 
         langtagLen = endian::from_network(langtagLen);
 
-        req.header.langtag.insert(
-            0, (const char*)buff.data() + slp::header::OFFSET_LANG, langtagLen);
-
-        /* check for the validity of the function */
-        if (req.header.functionID <
-                static_cast<uint8_t>(slp::FunctionType::SRVRQST) ||
-            req.header.functionID > static_cast<uint8_t>(slp::FunctionType::SAADV))
+        // Enforce language tag size limits
+        if ((slp::header::OFFSET_LANG + langtagLen) > buff.size())
         {
-            std::cerr << "Invalid function ID: " << req.header.functionID << std::endl;
+            std::cerr << "Invalid Language Tag Length: " << langtagLen << std::endl;
             rc = static_cast<int>(slp::Error::PARSE_ERROR);
+        }
+        else
+        {
+            req.header.langtag.insert(
+                0, (const char*)buff.data() + slp::header::OFFSET_LANG, langtagLen);
+
+            /* check for the validity of the function */
+            if (req.header.functionID <
+                    static_cast<uint8_t>(slp::FunctionType::SRVRQST) ||
+                req.header.functionID > static_cast<uint8_t>(slp::FunctionType::SAADV))
+            {
+                std::cerr << "Invalid function ID: " << req.header.functionID << std::endl;
+                rc = static_cast<int>(slp::Error::PARSE_ERROR);
+            }
         }
     }
 
