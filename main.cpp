@@ -25,25 +25,37 @@ static int requestHandler(sd_event_source* /*es*/, int fd, uint32_t /*revents*/,
         return rc;
     }
 
-    switch (recvBuff[0])
+    // This code currently assume a maximum of 255 bytes in a recieve
+    // or respone message. Enforce that here.
+    if (recvBuff.size() > slp::MAX_LEN)
     {
-        case slp::VERSION_2:
-        {
-            // Parse the buffer and construct the req object
-            std::tie(rc, req) = slp::parser::parseBuffer(recvBuff);
-            if (!rc)
-            {
-                // Passing the req object to handler to serve it
-                std::tie(rc, resp) = slp::handler::processRequest(req);
-            }
-            break;
-        }
-        default:
-            std::cout << "SLP Unsupported Request Version=" << (int)recvBuff[0]
-                      << "\n";
+        std::cerr << "Message size exceeds maximum allowed: " << recvBuff.size()
+                  << " / " << slp::MAX_LEN << std::endl;
 
-            rc = static_cast<uint8_t>(slp::Error::VER_NOT_SUPPORTED);
-            break;
+        rc = static_cast<uint8_t>(slp::Error::PARSE_ERROR);
+    }
+    else
+    {
+        switch (recvBuff[0])
+        {
+            case slp::VERSION_2:
+            {
+                // Parse the buffer and construct the req object
+                std::tie(rc, req) = slp::parser::parseBuffer(recvBuff);
+                if (!rc)
+                {
+                    // Passing the req object to handler to serve it
+                    std::tie(rc, resp) = slp::handler::processRequest(req);
+                }
+                break;
+            }
+            default:
+                std::cout << "SLP Unsupported Request Version="
+                          << (int)recvBuff[0] << "\n";
+
+                rc = static_cast<uint8_t>(slp::Error::VER_NOT_SUPPORTED);
+                break;
+        }
     }
 
     // if there was error during Parsing of request

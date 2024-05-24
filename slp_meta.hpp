@@ -12,6 +12,9 @@ constexpr auto TIMEOUT = 30;
 /** @brief SLP service lifetime */
 constexpr auto LIFETIME = 5;
 
+/** @brief Largest input or output buffer allowed s*/
+constexpr size_t MAX_LEN = 255;
+
 /** @brief Defines the constants for slp header.
  *  Size and the offsets.
  */

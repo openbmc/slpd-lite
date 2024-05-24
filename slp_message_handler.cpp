@@ -110,6 +110,20 @@ std::tuple<int, buffer> processSrvTypeRequest(const Message& req)
 
     std::cout << "service=" << service.c_str() << "\n";
 
+    // See if total response size exceeds our max
+    uint32_t totalLength =
+        buff.size() +                 /* 14 bytes header + length of langtag */
+        slp::response::SIZE_ERROR +   /* 2 byte err code */
+        slp::response::SIZE_SERVICE + /* 2 byte srvtype len */
+        service.length();
+    if (totalLength > slp::MAX_LEN)
+    {
+        std::cerr << "Message response size exceeds maximum allowed: "
+                  << totalLength << " / " << slp::MAX_LEN << std::endl;
+        buff.resize(0);
+        return std::make_tuple((int)slp::Error::PARSE_ERROR, buff);
+    }
+
     uint8_t length = buff.size() + /* 14 bytes header + length of langtag */
                      slp::response::SIZE_ERROR +   /* 2 byte err code */
                      slp::response::SIZE_SERVICE + /* 2 byte srvtype len */
@@ -213,6 +227,17 @@ std::tuple<int, buffer> processSrvRequest(const Message& req)
     {
         std::string url = svc.name + ':' + svc.type + "//" + addr + ',' +
                           svc.port;
+
+        // See if total response size exceeds our max
+        uint32_t totalLength = buff.size() + slp::response::SIZE_URL_ENTRY +
+                               url.length();
+        if (totalLength > slp::MAX_LEN)
+        {
+            std::cerr << "Message response size exceeds maximum allowed: "
+                      << totalLength << " / " << slp::MAX_LEN << std::endl;
+            buff.resize(0);
+            return std::make_tuple((int)slp::Error::PARSE_ERROR, buff);
+        }
 
         buff.resize(buff.size() + slp::response::SIZE_URL_ENTRY + url.length());
 
