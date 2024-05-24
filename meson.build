@@ -39,3 +39,17 @@ gmock = dependency('gmock', disabler: true, required: build_tests)
           include_directories: '../'
       )
   )
+
+  test(
+      'test_slp_message_handler',
+      executable('test_slp_message_handler',
+          './test/slp_message_handler_test.cpp',
+          'slp_parser.cpp',
+          'slp_message_handler.cpp',
+          dependencies: [
+              gtest,
+          ],
+          implicit_include_directories: true,
+          include_directories: '../'
+      )
+  )

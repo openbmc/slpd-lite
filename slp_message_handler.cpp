@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <algorithm>
+#include <bitset>
 
 namespace slp
 {
@@ -363,7 +364,8 @@ std::tuple<int, buffer> processRequest(const Message& msg)
 {
     int rc = slp::SUCCESS;
     buffer resp(0);
-    std::cout << "SLP Processing Request=" << msg.header.functionID << "\n";
+    std::cout << "SLP Processing Request="
+              << std::bitset<8>(msg.header.functionID) << "\n";
 
     switch (msg.header.functionID)
     {
@@ -382,14 +384,62 @@ std::tuple<int, buffer> processRequest(const Message& msg)
 
 buffer processError(const Message& req, uint8_t err)
 {
-    buffer buff;
-    buff = slp::handler::internal::prepareHeader(req);
+    if (req.header.functionID != 0)
+    {
+        std::cout << "Processing Error for function: "
+                  << std::bitset<8>(req.header.functionID) << std::endl;
+    }
+
+    /*  0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |        Service Location header (function = SrvRply = 2)       |
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |        Error Code             |        URL Entry count        |
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        |       <URL Entry 1>          ...       <URL Entry N>          \
+        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+*/
+
+    // There has been some sort of issue processing the request from
+    // the client. Can not assume the input request buffer is valid
+    // so just create an empty buffer with the non-variable size
+    // fields set and the error code
+    uint8_t length = slp::header::MIN_LEN +     /* 14 bytes for header     */
+                     slp::response::SIZE_ERROR; /*  2 bytes for error code */
+
+    buffer buff(length, 0);
 
     static_assert(sizeof(err) == 1, "Errors should be 1 byte.");
 
+    buff[slp::header::OFFSET_VERSION] = req.header.version;
+
+    // will increment the function id from 1 as reply
+    buff[slp::header::OFFSET_FUNCTION] = req.header.functionID + 1;
+
+    std::copy_n(&length, slp::header::SIZE_LENGTH,
+                buff.data() + slp::header::OFFSET_LENGTH);
+
+    auto flags = endian::to_network(req.header.flags);
+
+    std::copy_n((uint8_t*)&flags, slp::header::SIZE_FLAGS,
+                buff.data() + slp::header::OFFSET_FLAGS);
+
+    std::copy_n(req.header.extOffset.data(), slp::header::SIZE_EXT,
+                buff.data() + slp::header::OFFSET_EXT);
+
+    auto xid = endian::to_network(req.header.xid);
+
+    std::copy_n((uint8_t*)&xid, slp::header::SIZE_XID,
+                buff.data() + slp::header::OFFSET_XID);
+
+    // This is an invalid header from user so just fill in 0 for langtag
+    uint16_t langtagLen = 0;
+    std::copy_n((uint8_t*)&langtagLen, slp::header::SIZE_LANG,
+                buff.data() + slp::header::OFFSET_LANG_LEN);
+
     // Since this is network order, the err should go in the 2nd byte of the
-    // error field.  This is immediately after the langtag.
-    buff[slp::header::MIN_LEN + req.header.langtag.length() + 1] = err;
+    // error field.
+    buff[slp::header::MIN_LEN + 1] = err;
 
     return buff;
 }
