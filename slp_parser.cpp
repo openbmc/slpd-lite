@@ -77,6 +77,7 @@ std::tuple<int, Message> parseHeader(const buffer& buff)
         }
         else
         {
+            req.header.langtagLen = langtagLen;
             req.header.langtag.insert(
                 0, (const char*)buff.data() + slp::header::OFFSET_LANG,
                 langtagLen);
@@ -117,31 +118,63 @@ int parseSrvTypeRqst(const buffer& buff, Message& req)
 
     /* Parse the PRList. */
     uint16_t prListLen;
-    std::copy_n(buff.data() + slp::request::OFFSET_PR_LEN,
-                slp::request::SIZE_PRLIST, (uint8_t*)&prListLen);
+    uint32_t pos = slp::header::MIN_LEN + req.header.langtagLen;
+    if ((pos + slp::request::SIZE_PRLIST) > buff.size())
+    {
+        std::cerr << "PRList length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_PRLIST) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
+    std::copy_n(buff.data() + pos, slp::request::SIZE_PRLIST,
+                (uint8_t*)&prListLen);
 
+    pos += slp::request::SIZE_PRLIST;
     prListLen = endian::from_network(prListLen);
 
-    req.body.srvtyperqst.prList.insert(
-        0, (const char*)buff.data() + slp::request::OFFSET_PR, prListLen);
+    if ((pos + prListLen) > buff.size())
+    {
+        std::cerr << "Length of PRList is greater then input buffer: "
+                  << (slp::request::OFFSET_PR + prListLen) << " / "
+                  << buff.size() << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
 
-    uint8_t pos = slp::request::OFFSET_PR + prListLen;
+    req.body.srvtyperqst.prList.insert(0, (const char*)buff.data() + pos,
+                                       prListLen);
+
+    pos += prListLen;
 
     /* Parse the Naming Authority. */
     uint16_t namingAuthLen;
+    if ((pos + slp::request::SIZE_NAMING) > buff.size())
+    {
+        std::cerr << "Naming auth length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_NAMING) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_NAMING,
                 (uint8_t*)&namingAuthLen);
 
     pos += slp::request::SIZE_NAMING;
 
     namingAuthLen = endian::from_network(namingAuthLen);
-
     if (namingAuthLen == 0 || namingAuthLen == 0xffff)
     {
         req.body.srvtyperqst.namingAuth = "";
+        // If it's the special 0xffff, treat like 0 size
+        namingAuthLen = 0;
     }
     else
     {
+        if ((pos + namingAuthLen) > buff.size())
+        {
+            std::cerr << "Length of Naming Size is greater then input buffer: "
+                      << (pos + namingAuthLen) << " / " << buff.size()
+                      << std::endl;
+            return (int)slp::Error::PARSE_ERROR;
+        }
         req.body.srvtyperqst.namingAuth.insert(
             0, (const char*)buff.data() + pos, namingAuthLen);
     }
@@ -150,12 +183,25 @@ int parseSrvTypeRqst(const buffer& buff, Message& req)
 
     /* Parse the <scope-list>. */
     uint16_t scopeListLen;
+    if ((pos + slp::request::SIZE_SCOPE) > buff.size())
+    {
+        std::cerr << "Length of Scope suze is greater then input buffer: "
+                  << (pos + slp::request::SIZE_SCOPE) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_SCOPE,
                 (uint8_t*)&scopeListLen);
 
     pos += slp::request::SIZE_SCOPE;
 
     scopeListLen = endian::from_network(scopeListLen);
+    if ((pos + scopeListLen) > buff.size())
+    {
+        std::cerr << "Length of Scope List is greater then input buffer: "
+                  << (pos + scopeListLen) << " / " << buff.size() << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
 
     req.body.srvtyperqst.scopeList.insert(0, (const char*)buff.data() + pos,
                                           scopeListLen);
