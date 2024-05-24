@@ -69,7 +69,7 @@ namespace request
 {
 
 constexpr size_t MIN_SRVTYPE_LEN = 22;
-constexpr size_t MIN_SRV_LEN = 26;
+constexpr size_t MIN_SRV_LEN = 24;
 
 constexpr size_t SIZE_PRLIST = 2;
 constexpr size_t SIZE_NAMING = 2;
