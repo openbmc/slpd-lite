@@ -230,13 +230,27 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     /* 1) Parse the PRList. */
     uint16_t prListLen;
-    std::copy_n(buff.data() + slp::request::OFFSET_PR_LEN,
+    size_t pos = slp::header::MIN_LEN + req.header.langtagLen;
+    if ((pos + slp::request::SIZE_PRLIST) > buff.size())
+    {
+        std::cerr << "PRList length field is greater then input buffer: "
+            << (pos + slp::request::SIZE_PRLIST) << " / " << buff.size()
+            << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
+    std::copy_n(buff.data() + pos,
                 slp::request::SIZE_PRLIST, (uint8_t*)&prListLen);
 
-    auto pos = slp::request::OFFSET_PR_LEN + slp::request::SIZE_PRLIST;
+    pos += slp::request::SIZE_PRLIST;
 
     prListLen = endian::from_network(prListLen);
-
+    if ((pos + prListLen) > buff.size())
+    {
+        std::cerr << "Length of PRList is greater then input buffer: "
+                  << (slp::request::OFFSET_PR + prListLen) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     req.body.srvrqst.prList.insert(0, (const char*)buff.data() + pos,
                                    prListLen);
 
@@ -244,6 +258,13 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     /* 2) Parse the <service-type> string. */
     uint16_t srvTypeLen;
+    if ((pos + slp::request::SIZE_SERVICE_TYPE) > buff.size())
+    {
+        std::cerr << "SrvType length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_SERVICE_TYPE) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_SERVICE_TYPE,
                 (uint8_t*)&srvTypeLen);
 
@@ -251,6 +272,13 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     pos += slp::request::SIZE_SERVICE_TYPE;
 
+    if ((pos + srvTypeLen) > buff.size())
+    {
+        std::cerr << "Length of SrvType is greater then input buffer: "
+                  << (pos + srvTypeLen) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     req.body.srvrqst.srvType.insert(0, (const char*)buff.data() + pos,
                                     srvTypeLen);
 
@@ -258,6 +286,13 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     /* 3) Parse the <scope-list> string. */
     uint16_t scopeListLen;
+    if ((pos + slp::request::SIZE_SCOPE) > buff.size())
+    {
+        std::cerr << "Scope List length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_SCOPE) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_SCOPE,
                 (uint8_t*)&scopeListLen);
 
@@ -265,6 +300,13 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     pos += slp::request::SIZE_SCOPE;
 
+    if ((pos + scopeListLen) > buff.size())
+    {
+        std::cerr << "Length of Scope List is greater then input buffer: "
+                  << (pos + scopeListLen) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     req.body.srvrqst.scopeList.insert(0, (const char*)buff.data() + pos,
                                       scopeListLen);
 
@@ -272,12 +314,26 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     /* 4) Parse the <predicate> string. */
     uint16_t predicateLen;
+    if ((pos + slp::request::SIZE_PREDICATE) > buff.size())
+    {
+        std::cerr << "Predicate length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_PREDICATE) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_PREDICATE,
                 (uint8_t*)&predicateLen);
 
     predicateLen = endian::from_network(predicateLen);
     pos += slp::request::SIZE_PREDICATE;
 
+    if ((pos + predicateLen) > buff.size())
+    {
+        std::cerr << "Length of Predicate is greater then input buffer: "
+                  << (pos + predicateLen) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     req.body.srvrqst.predicate.insert(0, (const char*)buff.data() + pos,
                                       predicateLen);
 
@@ -285,12 +341,26 @@ int parseSrvRqst(const buffer& buff, Message& req)
 
     /* 5) Parse the <SLP SPI> string. */
     uint16_t spistrLen;
+    if ((pos + slp::request::SIZE_SLPI) > buff.size())
+    {
+        std::cerr << "SLP SPI length field is greater then input buffer: "
+                  << (pos + slp::request::SIZE_SLPI) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     std::copy_n(buff.data() + pos, slp::request::SIZE_SLPI,
                 (uint8_t*)&spistrLen);
 
     spistrLen = endian::from_network(spistrLen);
     pos += slp::request::SIZE_SLPI;
 
+    if ((pos + spistrLen) > buff.size())
+    {
+        std::cerr << "Length of SLP SPI is greater then input buffer: "
+                  << (pos + spistrLen) << " / " << buff.size()
+                  << std::endl;
+        return (int)slp::Error::PARSE_ERROR;
+    }
     req.body.srvrqst.spistr.insert(0, (const char*)buff.data() + pos,
                                    spistrLen);
 
