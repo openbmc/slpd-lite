@@ -35,6 +35,8 @@ constexpr size_t OFFSET_LANG_LEN = 12;
 constexpr size_t OFFSET_LANG = 14;
 
 constexpr size_t MIN_LEN = 14;
+constexpr size_t MAX_LEN = 255;
+
 } // namespace header
 
 /** @brief Defines the constants for slp response.
