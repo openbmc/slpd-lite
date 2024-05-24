@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include <algorithm>
+#include <bitset>
 
 namespace slp
 {
@@ -363,7 +364,8 @@ std::tuple<int, buffer> processRequest(const Message& msg)
 {
     int rc = slp::SUCCESS;
     buffer resp(0);
-    std::cout << "SLP Processing Request=" << msg.header.functionID << "\n";
+    std::cout << "SLP Processing Request="
+              << std::bitset<8>(msg.header.functionID) << "\n";
 
     switch (msg.header.functionID)
     {
@@ -382,14 +384,22 @@ std::tuple<int, buffer> processRequest(const Message& msg)
 
 buffer processError(const Message& req, uint8_t err)
 {
-    buffer buff;
-    buff = slp::handler::internal::prepareHeader(req);
+    if (req.header.functionID != 0)
+    {
+        std::cout << "Processing Error for function: "
+                  << std::bitset<8>(req.header.functionID) << std::endl;
+    }
+    // There has been some sort of issue processing the request from
+    // the client. Can not assume the input request buffer is valid
+    // so just create an empty buffer with error field set
+    // Lang Tag size is 0 so no Lang Tag
+    buffer buff(slp::header::MIN_LEN + 1, 0);
 
     static_assert(sizeof(err) == 1, "Errors should be 1 byte.");
 
     // Since this is network order, the err should go in the 2nd byte of the
-    // error field.  This is immediately after the langtag.
-    buff[slp::header::MIN_LEN + req.header.langtag.length() + 1] = err;
+    // error field.
+    buff[slp::header::MIN_LEN + 1] = err;
 
     return buff;
 }
