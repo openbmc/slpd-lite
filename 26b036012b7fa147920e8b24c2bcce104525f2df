@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4bbfd16_205ce724",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-25T01:38:04Z",
+      "side": 1,
+      "message": "Some references for reviewers:\n- https://www.ietf.org/rfc/rfc2608.txt\n- https://github.com/openslp-org/openslp\n\nSome notes:\n2 main issues addressed with these patches\n- Ability for external caller to pass an invalid size as a part of a command resulting in writes or reads beyond the allocated buffer in memory\n- Assumptions within the code that the buffer size will never be bigger then the size of a unsigned byte (255 bytes)",
+      "revId": "26b036012b7fa147920e8b24c2bcce104525f2df",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
