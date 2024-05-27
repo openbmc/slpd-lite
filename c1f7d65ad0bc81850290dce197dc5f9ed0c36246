@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93191b3d_556dc7f4",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "Just a first glance so unconfirmed, but looks these checks need integer overflow protection (i.e. if langtagLen is very close to SIZE_MAX)? Result would be that pos is very large and the subsequent copy_n to buff.data() is well past its boundary.\n\nI suggest adding additional checks here - i.e., (pos \u003c MIN_LEN) || (pos + SIZE_PRLIST \u003c pos) should return an error - and at the other commented lines.\n\nSome of these overflow checks that follow may be unnecessary depending on what values are attacker-controllable and any limits on buff.size() relative to SIZE_MAX. That said, the checks are probably worthwhile and with minimal performance impact regardless",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a9d6f8_d704f305",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and same here: ((pos + prListLen) \u003c pos) is an overflow error",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93631154_4228d255",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "Overflow check needed here again\n... || (pos + SIZE_SERVICE_TYPE \u003c pos)",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b767de38_9fe74be9",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "And here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c70ffb5e_eca1bb5d",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d5a425_83124b9b",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7255f29_e0f42a78",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdea7982_803dd355",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "586f8f48_7a97fd66",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db04cb85_93ab6a84",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-27T15:34:04Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
