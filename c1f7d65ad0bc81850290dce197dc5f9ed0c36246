@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1750de6e_6e58f1fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-27T20:57:23Z",
+      "side": 1,
+      "message": "Thanks for the review Jameson. Let me know what you think about my 32 bit vs. 16 bit comment. I don\u0027t mind adding the overflow checking but would like to be sure it\u0027s required.",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93191b3d_556dc7f4",
@@ -14,6 +31,24 @@
       "writtenOn": "2024-05-27T15:34:04Z",
       "side": 1,
       "message": "Just a first glance so unconfirmed, but looks these checks need integer overflow protection (i.e. if langtagLen is very close to SIZE_MAX)? Result would be that pos is very large and the subsequent copy_n to buff.data() is well past its boundary.\n\nI suggest adding additional checks here - i.e., (pos \u003c MIN_LEN) || (pos + SIZE_PRLIST \u003c pos) should return an error - and at the other commented lines.\n\nSome of these overflow checks that follow may be unnecessary depending on what values are attacker-controllable and any limits on buff.size() relative to SIZE_MAX. That said, the checks are probably worthwhile and with minimal performance impact regardless",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc481149_4c93c0a1",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-27T20:57:23Z",
+      "side": 1,
+      "message": "Hmm, I\u0027m wondering though. size_t will be a 32 bit value (or 64 bit) and all the field lengths we read from the user are always 16 bit. Biggest 16bit is 65,000 vs. 2 billion for 32bit. So I think we\u0027re ok?",
+      "parentUuid": "93191b3d_556dc7f4",
       "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
