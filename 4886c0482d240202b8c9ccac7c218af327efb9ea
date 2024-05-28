@@ -97,6 +97,24 @@
       "parentUuid": "3ae33ebd_1b8076a0",
       "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e1f3794_642e5cb9",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2024-05-28T15:56:58Z",
+      "side": 1,
+      "message": "It seems to me any user agent will want better error handling.\n\nRFC2608, Section 7 (\"Errors\"):\n\u003e If the Error Code in a SLP reply message is nonzero, the rest of the\n\u003e message MAY be truncated.  No data is necessarily transmitted or\n\u003e should be expected after the header and the error code....\n\nThe problem we are discussing is because the Error Code comes after the header whose size itself may be the reason for the error.  The Header is complex and has variable size Extensions and variable size Language Tag.\n\nWhen the request header is in error, is a solution to reconstruct it?  The essential request header fields seem to be version, Function ID, XID, Language Tag, and of course the Length.  Can we very carefully copy these into a new reply?\n1. Allocate a reply message.\n2. Fill the reply with all zeroes.\n3. Copy specific portions of the request header into the reply: Version, Function ID (incremented to become the reply?), omit any extension offsets (so they are zero), XID.  In case the request was less than 14 bytes, only copy data that was provided.\n4. Copy the Language Tag \u0026 its Length (truncated to perhaps 32 bytes -- big enough to handle any 2\u00263 letter languages codes, including Klingon).  Truncation is in the spirit of the RFC.\n5. Then add the Error Code and set the Length.\n\nThis seems complex.  Does anyone foresee any complications which could lead to additional security vulnerabilities?",
+      "parentUuid": "63089f18_2a61f2cd",
+      "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
