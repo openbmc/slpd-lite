@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "652fda0a_b238ff4d",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-28T18:58:47Z",
+      "side": 1,
+      "message": "As noted in other review, use uint32_t to ensure proper size of this variable to avoid overflow issues.",
+      "revId": "64a6f8b7489f88fe57af9f6124c288c1b0a6d192",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
