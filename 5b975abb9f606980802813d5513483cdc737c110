@@ -22,6 +22,29 @@
       },
       "revId": "5b975abb9f606980802813d5513483cdc737c110",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def94bde_22ce0953",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000452
+      },
+      "writtenOn": "2024-05-28T15:23:36Z",
+      "side": 1,
+      "message": "should you also define a slp::response::MAX_LEN",
+      "range": {
+        "startLine": 118,
+        "startChar": 27,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "5b975abb9f606980802813d5513483cdc737c110",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
