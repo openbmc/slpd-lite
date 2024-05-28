@@ -181,6 +181,24 @@
       "parentUuid": "6e1f3794_642e5cb9",
       "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049b972d_6dd65785",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2024-05-28T20:49:59Z",
+      "side": 1,
+      "message": "A 0 (zero) length language tag (empty string) seems like an acceptable compromise.  With this approach:\n- The fixed-size portion of the request header has its essential fields (Version, XID, etc.).\n- The Language Tag always comes back as the empty string.\n- There is always space for the Error Code field.\n- The overall \"Length\" is fixed size.  (The message is \"truncated\" as allowed by the spec.)\n\n\nSlight correction to my previous comment.  The Extension Offset field within the Header is a fixed-size 3 byte field.  The spec says we should parse the Extension, but it looks like the slpd-lite code simply ignores this field and does not attempt to access or interpret the Extension.  This appears to violate the SLP spec, but might be okay for a \"lite\" implementation.  I would approve zeroing this out for the reply message.",
+      "parentUuid": "6e1f3794_642e5cb9",
+      "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
