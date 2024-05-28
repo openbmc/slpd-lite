@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a2cc34_50341442",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000235
+      },
+      "writtenOn": "2024-05-28T22:35:54Z",
+      "side": 1,
+      "message": "This looks correct.  I believe the checks are correct, and resetting the buffer to empty is correct.\n(Same analysis in the processSrvRequest code below.)",
+      "revId": "eebd0815512b9987c2e5c65e6bd78ab467c39c4a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
