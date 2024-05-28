@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e1bf21_800f7e09",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2024-05-28T08:11:22Z",
+      "side": 1,
+      "message": "we don\u0027t need to put this here, Suggestion is to print the RC here.\nhttps://github.com/openbmc/slpd-lite/blob/99f391bafe6ecb91ea46515808431f185ceb0a32/main.cpp#L53",
+      "range": {
+        "startLine": 387,
+        "startChar": 1,
+        "endLine": 391,
+        "endChar": 5
+      },
+      "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "154cd187_23212407",
+        "filename": "slp_message_handler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2024-05-28T08:11:22Z",
+      "side": 1,
+      "message": "Can we also put up the error response format here?\n```      0                   1                   2                   3\n      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1\n     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n     |        Service Location header (function \u003d SrvRply \u003d 2)       |\n     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n     |        Error Code             |        URL Entry count        |\n     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n     |       \u003cURL Entry 1\u003e          ...       \u003cURL Entry N\u003e          \\\n     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+```",
+      "range": {
+        "startLine": 392,
+        "startChar": 2,
+        "endLine": 392,
+        "endChar": 5
+      },
+      "revId": "4886c0482d240202b8c9ccac7c218af327efb9ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
