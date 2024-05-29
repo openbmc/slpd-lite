@@ -124,6 +124,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94148c6d_9ce03c3c",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ad1ed251_675c6993",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93631154_4228d255",
@@ -137,6 +155,24 @@
       "writtenOn": "2024-05-27T15:34:04Z",
       "side": 1,
       "message": "Overflow check needed here again\n... || (pos + SIZE_SERVICE_TYPE \u003c pos)",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dfecc01_e20213ab",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "As discussed above, using a uint32_t for our size calculation ensure there are no wrapping issues with handling all the user provided uint16_t values.",
+      "parentUuid": "93631154_4228d255",
       "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -158,6 +194,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "084b0f84_cf3d8d57",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b767de38_9fe74be9",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c70ffb5e_eca1bb5d",
@@ -171,6 +225,24 @@
       "writtenOn": "2024-05-27T15:34:04Z",
       "side": 1,
       "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcbdd786_9dd0eeae",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c70ffb5e_eca1bb5d",
       "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -192,6 +264,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "505354ae_34955db1",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d5a425_83124b9b",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7255f29_e0f42a78",
@@ -205,6 +295,24 @@
       "writtenOn": "2024-05-27T15:34:04Z",
       "side": 1,
       "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00158379_a9104b73",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7255f29_e0f42a78",
       "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -226,6 +334,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac585018_c3222486",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdea7982_803dd355",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "586f8f48_7a97fd66",
@@ -243,6 +369,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b64edf0_c3e51cd0",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "586f8f48_7a97fd66",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db04cb85_93ab6a84",
@@ -256,6 +400,24 @@
       "writtenOn": "2024-05-27T15:34:04Z",
       "side": 1,
       "message": "and here",
+      "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b447d99_16ea4cba",
+        "filename": "slp_parser.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T12:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db04cb85_93ab6a84",
       "revId": "c1f7d65ad0bc81850290dce197dc5f9ed0c36246",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
