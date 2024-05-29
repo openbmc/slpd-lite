@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3db70d6e_0dbbc326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2024-05-29T13:55:11Z",
+      "side": 1,
+      "message": "Andrew, Can you please test it on the real machine too?",
+      "revId": "20bab74865ba955921eb0e4e427c84e37e1c8916",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87548555_4b4fd3c1",
+        "filename": "slp_meta.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000022
+      },
+      "writtenOn": "2024-05-29T13:55:11Z",
+      "side": 1,
+      "message": "how did we reach at this?",
+      "range": {
+        "startLine": 72,
+        "startChar": 31,
+        "endLine": 72,
+        "endChar": 34
+      },
+      "revId": "20bab74865ba955921eb0e4e427c84e37e1c8916",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
