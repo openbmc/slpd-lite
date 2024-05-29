@@ -16,6 +16,24 @@
       "message": "Can you explain a bit more about how to view the response?  For example, does this program print each response?  Or is this intended to be used in conjunction with a debugger live on the BMC?",
       "revId": "746e8e6855f083439e1bed2121f0ec9421729a6e",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d0b879d_f1c5d9f5",
+        "filename": "test/test-suite.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2024-05-29T13:13:40Z",
+      "side": 1,
+      "message": "Yeah, this was just a quick test script to validate the expected error paths on the BMC side of things (expected logs, no slpd crashes). So yeah, just meant as a quick test you can run while watching the journal on the BMC.",
+      "parentUuid": "eb1d7dd6_c13cf768",
+      "revId": "746e8e6855f083439e1bed2121f0ec9421729a6e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
