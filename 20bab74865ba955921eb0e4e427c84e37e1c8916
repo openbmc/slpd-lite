@@ -18,6 +18,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0e927d0_c1801c0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002094
+      },
+      "writtenOn": "2024-05-29T14:05:09Z",
+      "side": 1,
+      "message": "I accidentally left a bunch of \"Done\"s in draft after Andrew\u0027s previous clarification. Joseph\u0027s comment has captured it since then.",
+      "revId": "20bab74865ba955921eb0e4e427c84e37e1c8916",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87548555_4b4fd3c1",
