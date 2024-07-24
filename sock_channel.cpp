@@ -24,7 +24,7 @@ std::tuple<int, buffer> Channel::read()
     int rc = 0;
     int readSize = 0;
     ssize_t readDataLen = 0;
-    buffer outBuffer(0);
+    buffer outBuffer;
 
     if (ioctl(sockfd, FIONREAD, &readSize) < 0)
     {

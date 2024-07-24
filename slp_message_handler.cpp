@@ -337,7 +337,7 @@ slp::handler::internal::ServiceList readSLPServiceInfo()
 std::tuple<int, buffer> processRequest(const Message& msg)
 {
     int rc = slp::SUCCESS;
-    buffer resp(0);
+    buffer resp;
     std::cout << "SLP Processing Request=" << msg.header.functionID << "\n";
 
     switch (msg.header.functionID)
