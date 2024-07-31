@@ -1,0 +1,10 @@
+Code-Review+1: Joseph Reynolds <joseph.reynolds1@ibm.com>
+Code-Review+1: Chris Engel <cjengel@us.ibm.com>
+Code-Review+2: Ratan Gupta <ratankgupta31@gmail.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Andrew Geissler <geissonator@yahoo.com>
+Submitted-at: Wed, 31 Jul 2024 15:08:07 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/slpd-lite/+/71616
+Comments-Total: 11
+Project: openbmc/slpd-lite
+Branch: refs/heads/master
