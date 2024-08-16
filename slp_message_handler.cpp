@@ -92,17 +92,17 @@ std::tuple<int, buffer> processSrvTypeRequest(const Message& req)
     bool firstIteration = true;
     for_each(svcList.cbegin(), svcList.cend(),
              [&service, &firstIteration](const auto& svc) {
-        if (firstIteration == true)
-        {
-            service = svc.first;
-            firstIteration = false;
-        }
-        else
-        {
-            service += ",";
-            service += svc.first;
-        }
-    });
+                 if (firstIteration == true)
+                 {
+                     service = svc.first;
+                     firstIteration = false;
+                 }
+                 else
+                 {
+                     service += ",";
+                     service += svc.first;
+                 }
+             });
 
     buff = prepareHeader(req);
 
@@ -226,12 +226,12 @@ std::tuple<int, buffer> processSrvRequest(const Message& req)
     auto pos = slp::response::OFFSET_URL_ENTRY + slp::response::SIZE_URL_COUNT;
     for (const auto& addr : ifaddrList)
     {
-        std::string url = svc.name + ':' + svc.type + "//" + addr + ',' +
-                          svc.port;
+        std::string url =
+            svc.name + ':' + svc.type + "//" + addr + ',' + svc.port;
 
         // See if total response size exceeds our max
-        uint32_t totalLength = buff.size() + slp::response::SIZE_URL_ENTRY +
-                               url.length();
+        uint32_t totalLength =
+            buff.size() + slp::response::SIZE_URL_ENTRY + url.length();
         if (totalLength > slp::MAX_LEN)
         {
             std::cerr << "Message response size exceeds maximum allowed: "
@@ -287,8 +287,9 @@ std::list<std::string> getIntfAddrs()
         return addrList;
     }
 
-    slp::deleted_unique_ptr<ifaddrs> ifaddrPtr(
-        ifaddr, [](ifaddrs* addr) { freeifaddrs(addr); });
+    slp::deleted_unique_ptr<ifaddrs> ifaddrPtr(ifaddr, [](ifaddrs* addr) {
+        freeifaddrs(addr);
+    });
 
     ifaddr = nullptr;
 
@@ -370,8 +371,8 @@ std::tuple<int, buffer> processRequest(const Message& msg)
     switch (msg.header.functionID)
     {
         case (uint8_t)slp::FunctionType::SRVTYPERQST:
-            std::tie(rc,
-                     resp) = slp::handler::internal::processSrvTypeRequest(msg);
+            std::tie(rc, resp) =
+                slp::handler::internal::processSrvTypeRequest(msg);
             break;
         case (uint8_t)slp::FunctionType::SRVRQST:
             std::tie(rc, resp) = slp::handler::internal::processSrvRequest(msg);

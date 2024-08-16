@@ -24,9 +24,9 @@ namespace udp
 class Server
 {
   public:
-    Server() : Server(slp::PORT, nullptr){};
+    Server() : Server(slp::PORT, nullptr) {};
 
-    Server(uint16_t port, sd_event_io_handler_t cb) : port(port), callme(cb){};
+    Server(uint16_t port, sd_event_io_handler_t cb) : port(port), callme(cb) {};
 
     Server(const Server&) = delete;
     Server& operator=(const Server&) = delete;
