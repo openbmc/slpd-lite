@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Ratan Gupta <ratankgupta31@gmail.com>
+Submitted-by: Patrick Williams <patrick@stwcx.xyz>
+Submitted-at: Fri, 28 Feb 2025 12:06:59 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/slpd-lite/+/77739
+Project: openbmc/slpd-lite
+Branch: refs/heads/master
