@@ -345,7 +345,7 @@ slp::handler::internal::ServiceList readSLPServiceInfo()
 
     if (dirPtr.get())
     {
-        while ((dent = readdir(dirPtr.get())) != NULL)
+        while ((dent = readdir(dirPtr.get())) != nullptr)
         {
             if (dent->d_type == DT_REG) // regular file
             {

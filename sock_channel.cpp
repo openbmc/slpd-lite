@@ -84,7 +84,7 @@ int Channel::write(buffer& inBuffer)
     {
         spuriousWakeup = false;
 
-        rc = select((sockfd + 1), nullptr, &writeSet, NULL, &varTimeout);
+        rc = select((sockfd + 1), nullptr, &writeSet, nullptr, &varTimeout);
 
         if (rc > 0)
         {

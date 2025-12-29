@@ -46,7 +46,7 @@ int slp::udp::Server::run()
         goto finish;
     }
     /* Block SIGTERM first, so that the event loop can handle it */
-    if (sigprocmask(SIG_BLOCK, &ss, NULL) < 0)
+    if (sigprocmask(SIG_BLOCK, &ss, nullptr) < 0)
     {
         r = -errno;
         goto finish;
@@ -55,13 +55,13 @@ int slp::udp::Server::run()
     /* Let's make use of the default handler and "floating"
        reference features of sd_event_add_signal() */
 
-    r = sd_event_add_signal(eventPtr.get(), NULL, SIGTERM, NULL, NULL);
+    r = sd_event_add_signal(eventPtr.get(), nullptr, SIGTERM, nullptr, nullptr);
     if (r < 0)
     {
         goto finish;
     }
 
-    r = sd_event_add_signal(eventPtr.get(), NULL, SIGINT, NULL, NULL);
+    r = sd_event_add_signal(eventPtr.get(), nullptr, SIGINT, nullptr, nullptr);
     if (r < 0)
     {
         goto finish;
