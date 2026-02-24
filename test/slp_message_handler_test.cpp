@@ -64,7 +64,7 @@ TEST(processError, InvalidLangTag)
     EXPECT_NE(rc, 0);
 
     // Verify all expected fields show up in response buffer even
-    // with an inavlid langugage tag size in the header
+    // with an invalid language tag size in the header
     std::vector<uint8_t> resp = slp::handler::processError(
         req, static_cast<uint8_t>(slp::Error::MSG_NOT_SUPPORTED));
 
@@ -89,7 +89,7 @@ TEST(processError, InvalidEverything)
     EXPECT_NE(rc, 0);
 
     // Verify all expected fields show up in response buffer even
-    // with an inavlid langugage tag size in the header
+    // with an invalid language tag size in the header
     std::vector<uint8_t> resp = slp::handler::processError(
         req, static_cast<uint8_t>(slp::Error::MSG_NOT_SUPPORTED));
 

@@ -187,7 +187,7 @@ std::tuple<int, buffer> processSrvRequest(const Message& req)
         return std::make_tuple((int)slp::Error::INTERNAL_ERROR, buff);
     }
 
-    // return error if serice type doesn't match
+    // return error if service type doesn't match
     auto& svcName = req.body.srvrqst.srvType;
     auto svcIt = svcList.find(svcName);
     if (svcIt == svcList.end())
